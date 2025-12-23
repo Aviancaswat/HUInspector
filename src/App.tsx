@@ -3,6 +3,7 @@ import './App.css';
 import HomeApp from './pages/home-app';
 //@ts-ignore
 import '@fontsource-variable/outfit';
+import { Layout } from './layout/layout';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         }
       }}
     >
-      <HomeApp />
+      <Layout>
+        <HomeApp />
+      </Layout>
     </ConfigProvider>
   )
 }
