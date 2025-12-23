@@ -8,7 +8,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className="min-h-screen">
-            <nav className="w-full md:px-8 py-4 max-w-7xl mx-auto">
+            <nav className="w-full md:px-8 py-4 max-w-7xl mx-auto animate-in fade-in duration-500">
                 <Navbar />
             </nav>
             <main>
