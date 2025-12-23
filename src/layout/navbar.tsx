@@ -1,7 +1,7 @@
 import { HuInspectorLogo } from "@/components/icons/hu-inspector-logo"
 import { cn } from "@/lib/utils"
 import { Space } from "antd"
-import { ThemeTogglerButton } from "../animate-ui/components/buttons/theme-toggler"
+import { ThemeTogglerButton } from "../components/animate-ui/components/buttons/theme-toggler"
 
 export default function Navbar() {
     return (

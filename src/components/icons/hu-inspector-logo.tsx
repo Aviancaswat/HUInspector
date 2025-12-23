@@ -5,10 +5,10 @@ interface HuInspectorLogoProps extends React.SVGProps<SVGSVGElement> {
     size?: number;
 }
 
-export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({ 
-    className, 
+export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
+    className,
     size = 32,
-    ...props 
+    ...props
 }) => {
     return (
         <svg
@@ -20,7 +20,6 @@ export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
             className={cn("", className)}
             {...props}
         >
-            {/* Document/HU background */}
             <rect
                 x="15"
                 y="10"
@@ -29,8 +28,7 @@ export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
                 rx="4"
                 className="fill-current text-gray-200 dark:text-gray-700"
             />
-            
-            {/* Document lines (representing user story text) */}
+
             <line
                 x1="25"
                 y1="25"
@@ -58,8 +56,7 @@ export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
                 strokeWidth="3"
                 strokeLinecap="round"
             />
-            
-            {/* Magnifying glass handle */}
+
             <line
                 x1="72"
                 y1="68"
@@ -69,8 +66,7 @@ export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
                 strokeWidth="6"
                 strokeLinecap="round"
             />
-            
-            {/* Magnifying glass circle */}
+
             <circle
                 cx="58"
                 cy="54"
@@ -86,8 +82,7 @@ export const HuInspectorLogo: React.FC<HuInspectorLogoProps> = ({
                 strokeWidth="4"
                 fill="none"
             />
-            
-            {/* Checkmark inside magnifying glass (inspection approval) */}
+
             <path
                 d="M 50 54 L 55 59 L 66 48"
                 className="stroke-current text-green-600 dark:text-green-400"

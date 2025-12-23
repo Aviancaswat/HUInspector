@@ -1,6 +1,7 @@
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { AnimateIcon } from "@/components/animate-ui/icons/icon";
+import CardHome from "@/components/home/card-home";
 import { Badge } from "@/components/ui/badge";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { cn } from "@/lib/utils";
@@ -32,6 +33,7 @@ export default function HomeApp() {
                         size="lg"
                         className={
                             cn(`w-full md:w-auto mt-6 
+                                animate-in zoom-in duration-500 
                                 delay-200 !bg-black 
                                 !text-white hover:!bg-gray-900
                                 dark:!bg-white 
@@ -43,6 +45,9 @@ export default function HomeApp() {
                         <ArrowRight />
                     </Button>
                 </AnimateIcon>
+            </div>
+            <div>
+                <CardHome />
             </div>
         </div>
     )
