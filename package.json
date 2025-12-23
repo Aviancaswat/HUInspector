@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@fontsource-variable/outfit": "^5.2.8",
-    "animate.css": "^4.1.1",
     "antd": "^6.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
