@@ -78,7 +78,7 @@ export default function CardHome() {
     return (
         <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full")}>
             {analysisCards.map((card, index) => (
-                <Card
+                <Card 
                     key={index}
                     className={cn(
                         "hover:shadow-lg transition-all duration-300 hover:-translate-y-1",
