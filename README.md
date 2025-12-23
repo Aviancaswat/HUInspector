@@ -1,73 +1,128 @@
-# React + TypeScript + Vite
+# 🔍 HuInspector
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Agente de IA que analiza Historias de Usuario para detectar vacíos, ambigüedades y riesgos técnicos antes del desarrollo.**
 
-Currently, two official plugins are available:
+> 🎉 Desarrollado por Avianca Evolutivos Team
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📋 Descripción
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+HuInspector es una aplicación web moderna diseñada para mejorar la calidad de las Historias de Usuario mediante análisis automatizado con IA. La herramienta identifica problemas comunes antes de que el desarrollo comience, ahorrando tiempo y reduciendo bugs.
 
-## Expanding the ESLint configuration
+### 🎯 Capacidades de Análisis
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Vacíos detectados**: Identifica elementos faltantes o incompletos
+- **Preguntas faltantes**: Genera interrogantes clave que deben aclararse
+- **Riesgos**: Detecta posibles problemas técnicos o de implementación
+- **Ambigüedades**: Señala puntos poco claros que pueden causar confusión
+- **Recomendaciones técnicas**: Proporciona sugerencias de mejora y mejores prácticas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologías
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Core
+- **React 19.2.0** - Biblioteca de UI
+- **TypeScript 5.9.3** - Tipado estático
+- **Vite 7.2.4** - Build tool y dev server
+
+### Styling
+- **Tailwind CSS 4.1.18** - Framework CSS utility-first
+- **Ant Design 6.1.1** - Componentes UI empresariales
+- **Outfit Variable Font** - Tipografía personalizada
+
+### Animations
+- **Motion 12.23.26** - Animaciones declarativas
+- **tw-animate-css 1.4.0** - Utilidades de animación para Tailwind
+
+### Utilities
+- **Lucide React** - Iconos modernos
+- **next-themes** - Gestión de temas
+- **clsx + tailwind-merge** - Gestión de clases CSS
+
+---
+
+## 🚀 Inicio Rápido
+
+### Prerrequisitos
+
+- Node.js 18+ 
+- npm o yarn
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone <repository-url>
+cd huinspector
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+La aplicación estará disponible en `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📜 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm run dev          # Inicia el servidor de desarrollo
+
+# Producción
+npm run build        # Construye la aplicación para producción
+npm run preview      # Preview del build de producción
+
+# Calidad de código
+npm run lint         # Ejecuta ESLint
 ```
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+huinspector/
+├── public/              # Archivos estáticos
+├── src/
+│   ├── assets/         # Imágenes, iconos, etc.
+│   ├── components/     # Componentes reutilizables
+│   │   ├── animate-ui/ # Componentes con animaciones
+│   │   ├── animations/ # Splash screen y animaciones
+│   │   ├── home/       # Componentes del home
+│   │   ├── icons/      # Iconos personalizados
+│   │   └── ui/         # Componentes UI base
+│   ├── hooks/          # Custom React hooks
+│   ├── layout/         # Layout components (navbar, footer)
+│   ├── lib/            # Utilidades y helpers
+│   ├── pages/          # Páginas de la aplicación
+│   ├── App.tsx         # Componente raíz
+│   ├── main.tsx        # Entry point
+│   └── index.css       # Estilos globales
+├── index.html          # HTML template
+├── vite.config.ts      # Configuración de Vite
+├── tsconfig.json       # Configuración de TypeScript
+├── postcss.config.js   # Configuración de PostCSS
+└── package.json        # Dependencias y scripts
+```
+
+---
+
+## 👥 Equipo
+
+**Avianca Evolutivos Team**
+
+---
+
+## 📄 Licencia
+
+Proyecto privado - Todos los derechos reservados
+
+---
+
+**Versión Beta** - En desarrollo activo
