@@ -14,7 +14,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <main>
                 {children}
             </main>
-            <footer className="w-full md:px-8 py-4 max-w-7xl mx-auto">
+            <footer className="w-full max-w-7xl mx-auto">
                 <Footer />
             </footer>
         </div>
