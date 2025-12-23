@@ -1,5 +1,3 @@
-'use client';
-
 import { type VariantProps } from 'class-variance-authority';
 import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
@@ -83,3 +81,4 @@ function ThemeTogglerButton({
 }
 
 export { ThemeTogglerButton, type ThemeTogglerButtonProps };
+
