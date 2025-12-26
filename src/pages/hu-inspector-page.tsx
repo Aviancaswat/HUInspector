@@ -1,89 +1,77 @@
-import { Button } from "@/components/animate-ui/components/buttons/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs";
+import TextareaInput from "@/components/app/textarea-input";
+import { TextAnimate } from "@/components/ui/text-animate";
+import { cn } from "@/lib/utils";
 import { HUInspectorService } from "@/service/huInspector.service";
-import { HUEXAMPLE } from "@/utils/hu";
+import React, { useEffect, useState } from "react";
 
-export function HUInspectorPage() {
+type AnalysisResult = {
+    progress: string[];
+    gaps: string[];
+    missingQuestions: string[];
+    risks: string[];
+    ambiguities: string[];
+    recommendations: string[];
+};
+
+export default function HUInspectorPage() {
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [currentProgressIndex, setCurrentProgressIndex] = useState(0);
+    const [showResults, setShowResults] = useState(false);
+    const [analysisData, setAnalysisData] = useState<AnalysisResult | null>(null);
 
     const handleAnalyzeHU = async (huContent: string) => {
         try {
+            setIsAnalyzing(true);
+            setShowResults(false);
+            setCurrentProgressIndex(0);
+            setAnalysisData(null);
+
             const result = await HUInspectorService.analyzeHU(huContent);
             console.log("HU Analysis Result:", result);
+            setAnalysisData(result);
         } catch (error) {
             console.error("Error analyzing HU:", error);
+            setIsAnalyzing(false);
         }
-    }
+    };
+
+    useEffect(() => {
+        if (analysisData && isAnalyzing) {
+            if (currentProgressIndex < analysisData.progress.length) {
+                const timer = setTimeout(() => {
+                    setCurrentProgressIndex((prev) => prev + 1);
+                }, 2000);
+                return () => clearTimeout(timer);
+            } else {
+                const finalTimer = setTimeout(() => {
+                    setIsAnalyzing(false);
+                    setShowResults(true);
+                }, 500);
+                return () => clearTimeout(finalTimer);
+            }
+        }
+    }, [analysisData, currentProgressIndex, isAnalyzing]);
 
     return (
-        <div className="flex w-full max-w-sm flex-col gap-6">
-            <Tabs defaultValue="account">
-                <TabsList>
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
-                </TabsList>
-                <Button onClick={() => handleAnalyzeHU(HUEXAMPLE)} variant={"accent"}>Analyze HU</Button>
-                <TabsContent value="account">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Account</CardTitle>
-                            <CardDescription>
-                                Make changes to your account here. Click save when you&apos;re
-                                done.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="grid gap-6">
-                            <div className="grid gap-3">
-                                {/* <Label htmlFor="tabs-demo-name">Name</Label>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" /> */}
-                                <p>Your account settings can be configured in the main application.</p>
-                            </div>
-                            <div className="grid gap-3">
-                                {/* <Label htmlFor="tabs-demo-username">Username</Label>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" /> */}
-                                <p>To change your username, please visit the main application settings.</p>
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save changes</Button>
-                        </CardFooter>
-                    </Card>
-                </TabsContent>
-                <TabsContent value="password">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Password</CardTitle>
-                            <CardDescription>
-                                Change your password here. After saving, you&apos;ll be logged
-                                out.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="grid gap-6">
-                            <div className="grid gap-3">
-                                <p>example text</p>
-                            </div>
-                            <div className="grid gap-3">
-                                <p>example text 2</p>
-                            </div>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Save password</Button>
-                        </CardFooter>
-                    </Card>
-                </TabsContent>
-            </Tabs>
+        <div className="w-full mx-auto">
+            {!isAnalyzing && !showResults && (
+                <React.Fragment>
+                    <TextAnimate
+                        animation='scaleUp'
+                        duration={0.6}
+                        by="word"
+                        className={cn("text-3xl md:text-5xl font-medium mb-8 text-center")}
+                    >
+                        ¿Qué HU analizamos hoy?
+                    </TextAnimate>
+                    <div className="animate-in fade-in duration-700 w-full">
+                        <TextareaInput
+                            onSubmit={handleAnalyzeHU}
+                            disabled={isAnalyzing}
+                        />
+                    </div>
+                </React.Fragment>
+            )}
         </div>
-    )
+    );
 }

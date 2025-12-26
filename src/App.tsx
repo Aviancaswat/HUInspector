@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SplashScreen } from './components/animations/splash-screen';
 import { Layout } from './layout/layout';
-import { HUInspectorPage } from './pages/hu-inspector-page';
+import HUInspectorPage from './pages/hu-inspector-page';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
