@@ -3,11 +3,11 @@ import OpenAI from "openai";
 import { z } from 'zod';
 
 const HUAnalysisSchema = z.object({
-    vacios: z.array(z.string()), // Array de vacíos detectados
-    preguntasFaltantes: z.array(z.string()), // Array de preguntas faltantes
-    riesgos: z.array(z.string()), // Array de riesgos
-    ambiguedades: z.array(z.string()), // Array de ambigüedades
-    recomendaciones: z.array(z.string()), // Array de recomendaciones técnicas
+    vacios: z.array(z.string()),
+    preguntasFaltantes: z.array(z.string()),
+    riesgos: z.array(z.string()),
+    ambiguedades: z.array(z.string()),
+    recomendaciones: z.array(z.string())
 });
 
 export type HUAnalysisResult = z.infer<typeof HUAnalysisSchema>;
@@ -18,13 +18,12 @@ export class HUInspectorRepository {
     private static agent: Agent<unknown, typeof HUAnalysisSchema> | null = null;
 
     private static initialize() {
-        // Verificar que la API key esté cargada
         if (!this.apiKey) {
             console.error('❌ API Key no encontrada. Asegúrate de tener VITE_API_KEY_OPENAI en tu archivo .env y reinicia el servidor.');
             throw new Error('API Key no configurada');
         }
         console.log('✅ API Key cargada:', this.apiKey.substring(0, 10) + '...');
-        
+
         if (!this.openAi) {
             this.openAi = new OpenAI({
                 apiKey: this.apiKey,
@@ -46,7 +45,7 @@ export class HUInspectorRepository {
 
     static async analyzeHURun(huContent: string): Promise<HUAnalysisResult> {
         this.initialize();
-        
+
         try {
             const prompt = `Analiza la siguiente Historia de Usuario:
             ${huContent}
@@ -59,7 +58,6 @@ export class HUInspectorRepository {
 
             const result = await run(this.agent!, prompt);
 
-            // Con outputType, finalOutput ya viene parseado y validado por el schema
             return result.finalOutput as HUAnalysisResult;
         } catch (error) {
             console.error('Error analyzing HU:', error);
