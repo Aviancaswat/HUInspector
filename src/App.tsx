@@ -4,8 +4,10 @@ import HomeApp from './pages/home-app';
 //@ts-ignore
 import '@fontsource-variable/outfit';
 import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SplashScreen } from './components/animations/splash-screen';
 import { Layout } from './layout/layout';
+import { HUInspectorPage } from './pages/hu-inspector-page';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -20,20 +22,32 @@ function App() {
   };
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          fontFamily: '"Outfit Variable", sans-serif'
-        }
-      }}
-    >
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-      {!showSplash && (
-        <Layout>
-          <HomeApp startAnimations={startAnimations} />
-        </Layout>
-      )}
-    </ConfigProvider>
+    <BrowserRouter>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: '"Outfit Variable", sans-serif'
+          }
+        }}
+      >
+        <Routes>
+          <Route 
+            path='/' 
+            element={
+              <>
+                {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+                {!showSplash && (
+                  <Layout>
+                    <HomeApp startAnimations={startAnimations} />
+                  </Layout>
+                )}
+              </>
+            } 
+          />
+          <Route path='/app' element={<HUInspectorPage />} />
+        </Routes>
+      </ConfigProvider>
+    </BrowserRouter>
   )
 }
 
