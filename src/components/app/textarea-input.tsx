@@ -44,7 +44,8 @@ export default function TextareaInput({
                     style={{
                         border: "none",
                         boxShadow: "none",
-                        width: "100%"
+                        width: "100%",
+                        fontSize: "1rem",
                     }}
                 />
             </div>
